@@ -1,0 +1,130 @@
+@import url('./reset.css');
+
+body{
+    background-color: rgb(0 0 0 / 85%);
+    margin: 0;
+  }
+
+  :root {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+.form{
+    display: flex;
+    padding-left: 15%;
+    padding-top: 50px;
+    padding-bottom: 150px;
+    gap: 24px;
+    padding-right: 800px;
+    margin-bottom: 50px;
+}
+
+  .gallery {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 20px;
+    justify-content: center;;
+  }
+  
+  .photo-information-container {
+    display: flex;
+    gap: 20px;
+    background: #FFF;
+    padding-left: 20px;
+    padding-top: 4px;
+  }
+  
+  .photos-list-item{
+    transition: 0.7s;
+    border: 2px solid #808080;
+  }
+
+  .photos-list-item:hover{
+    box-shadow: 0px 1px 2px 0px rgba(0,255,255,0.7),
+    1px 2px 4px 0px rgba(0,255,255,0.7),
+    2px 4px 8px 0px rgba(0,255,255,0.7),
+    2px 4px 16px 0px rgba(0,255,255,0.7);
+    transform: scale(01.05)  
+  }
+  
+  .photo {
+    display: block;
+    width: 360px;
+    height: 240px;
+    contain: content;
+  }
+
+  input {
+    outline: 0;
+    outline-offset: 0;
+    width: 272px;
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  input:active, input:hover {
+    /* border-color: #4E75FF; */
+    box-shadow: 0px 1px 2px 0px rgba(0,255,255,0.7),
+    1px 2px 4px 0px rgba(0,255,255,0.7),
+    2px 4px 8px 0px rgba(0, 255, 255, 0.702),
+    2px 4px 16px 0px rgba(0,255,255,0.7);
+  }
+
+  button {
+    width: 91px;
+    height: 57px;
+    border-radius: 8px;
+    background-color: #4E75FF;
+    padding: 8px 16px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    transition: 0.3s;
+    }
+    
+    button:hover{
+      box-shadow: 0px 1px 2px 0px rgba(0,255,255,0.7),
+                1px 2px 4px 0px rgba(0,255,255,0.7),
+                2px 4px 8px 0px rgba(0,255,255,0.7),
+                2px 4px 16px 0px rgba(0,255,255,0.7);
+                background-color: darkblue;
+                color: chocolate;
+    }
+
+    .loader {
+        border-radius: 100%;
+        border-top: 20px solid blue;
+        border-right: 20px solid gold;
+        border-bottom: 20px solid red;
+        border-left: 20px solid cyan;
+        width: 25px;
+        height: 25px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 1s linear infinite;
+        margin: auto;
+      }
+      
+      .is-hidden {
+        display: none;
+      }
+      
+      @-webkit-keyframes spin {
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      @keyframes spin {
+        100% { transform: rotate(360deg); }
+      }
+
+
