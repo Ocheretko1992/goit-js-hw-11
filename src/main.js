@@ -4,10 +4,8 @@ import { fetchImages } from "./js/pixabay-api.js";
 import { renderImages } from "./js/render-functions.js";
 
 
-
-const galleryList = document.querySelector(".gallery");
 let query;
-const input = document.querySelector("input");
+const galleryList = document.querySelector(".gallery");
 const form = document.querySelector("form");
 const loader = document.querySelector('.loader');
 
@@ -29,38 +27,49 @@ function validInput(event){
 
     galleryList.innerHTML = "";
 
-    query = input.value.trim();
+    query = event.target.elements.search.value.trim();
+    console.log(query);
 
     showLoader();
 
     if (query === "") {
-        iziToast.error({
+        iziToast.warning({
             color: 'yellow',
             message: "Please fill in the field for search!",
-            position: 'topRight',
+            position: 'topRight'
         })
         return
     }
 
-    if (data.hits.length === 0) {
+      if (data.hits.length === 0) {
       iziToast.error({
         message: "Sorry, there are no images matching your search query. Please try again!",
-         backgroundColor: "red",
-          messageColor: "white", 
-          position: 'topRight',})
-          return
-  } else {
-
-      fetchImages(query).then(data => renderImages(data.hits))
-      .catch(error => {
-          console.log(error);
+        backgroundColor: "red",
+        messageColor: "white", 
+        position: 'topRight'})
+  }else{
+      fetchImages(query).then(data =>renderImages(data.hits))
+      .catch(error => {console.log(error);
           iziToast.error({
               title: 'Error',
               message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
-              position: 'topRight',}
+              position: 'topRight'}
               )
-            }).finally(() => hideLoader())
-          }
+            }).finally(() => hideLoader())}
+
           
           event.target.reset();
 }
+
+
+
+
+
+
+          //   if (data.hits.length === 0) {
+  //     iziToast.error({
+  //       message: "Sorry, there are no images matching your search query. Please try again!",
+  //        backgroundColor: "red",
+  //         messageColor: "white", 
+  //         position: 'topRight'})
+  // }
