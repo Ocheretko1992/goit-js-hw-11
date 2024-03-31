@@ -15,3 +15,4 @@ export function fetchImages(query) {
         return response.json();
     });
 }
+

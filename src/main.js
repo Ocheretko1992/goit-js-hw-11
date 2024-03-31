@@ -34,20 +34,33 @@ function validInput(event){
     showLoader();
 
     if (query === "") {
-        iziToast.show({
+        iziToast.error({
             color: 'yellow',
             message: "Please fill in the field for search!",
             position: 'topRight',
         })
         return
     }
-      fetchImages(query)
-        .then(data => renderImages(data.hits)).catch(error => {
+
+    if (data.hits.length === 0) {
+      iziToast.error({
+        message: "Sorry, there are no images matching your search query. Please try again!",
+         backgroundColor: "red",
+          messageColor: "white", 
+          position: 'topRight',})
+          return
+  } else {
+
+      fetchImages(query).then(data => renderImages(data.hits))
+      .catch(error => {
           console.log(error);
-            iziToast.error({
+          iziToast.error({
               title: 'Error',
               message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
-              position: 'topRight',})}).finally(() => hideLoader())
+              position: 'topRight',}
+              )
+            }).finally(() => hideLoader())
+          }
           
-      event.target.reset();
+          event.target.reset();
 }
