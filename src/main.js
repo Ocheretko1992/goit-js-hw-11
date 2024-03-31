@@ -19,57 +19,43 @@ function hideLoader() {
     loader.classList.add("is-hidden");}
 
 //*===========================================================================================================
-
 form.addEventListener("submit", validInput);
 
 function validInput(event){
-    event.preventDefault();
 
-    galleryList.innerHTML = "";
+  event.preventDefault();
 
-    query = event.target.elements.search.value.trim();
-    console.log(query);
+  galleryList.innerHTML = "";
 
-    showLoader();
+  query = event.target.elements.search.value.trim();
 
-    if (query === "") {
-        iziToast.warning({
-            color: 'yellow',
-            message: "Please fill in the field for search!",
-            position: 'topRight'
-        })
-        return
-    }
-
+  showLoader();
+  if (query === "") {
+      iziToast.warning({
+          color: 'yellow',
+          message: "Please fill in the field for search!",
+          position: 'topRight'
+      })
+      return
+  }
+    fetchImages(query).then(data =>{
       if (data.hits.length === 0) {
-      iziToast.error({
-        message: "Sorry, there are no images matching your search query. Please try again!",
-        backgroundColor: "red",
-        messageColor: "white", 
-        position: 'topRight'})
-  }else{
-      fetchImages(query).then(data =>renderImages(data.hits))
-      .catch(error => {console.log(error);
           iziToast.error({
-              title: 'Error',
-              message: `❌ Sorry, there are no images matching your search query. Please, try again!`,
-              position: 'topRight'}
-              )
-            }).finally(() => hideLoader())}
-
+            message: "Sorry, there are no images matching your search query. Please try again!",
+            backgroundColor: "red",
+            messageColor: "white",
+            position: 'topRight'})
+      }
+      renderImages(data.hits)
+    })
+    .catch(error => {console.log(error);
+          iziToast.error({
+            title: 'Error',
+            message: `Sorry, there are no images matching your search query. Please, try again!`,
+            position: 'topRight'}
+            )
+          }).finally(() => hideLoader())
           
           event.target.reset();
-}
+        }
 
-
-
-
-
-
-          //   if (data.hits.length === 0) {
-  //     iziToast.error({
-  //       message: "Sorry, there are no images matching your search query. Please try again!",
-  //        backgroundColor: "red",
-  //         messageColor: "white", 
-  //         position: 'topRight'})
-  // }
