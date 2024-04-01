@@ -30,6 +30,7 @@ function validInput(event){
   query = event.target.elements.search.value.trim();
 
   showLoader();
+  
   if (query === "") {
       iziToast.warning({
           color: 'yellow',
