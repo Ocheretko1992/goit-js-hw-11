@@ -45,8 +45,12 @@ function validInput(event){
             backgroundColor: "red",
             messageColor: "white",
             position: 'topRight'})
-      }
-      renderImages(data.hits)
+          }
+          renderImages(data.hits)
+
+          event.target.reset();
+          
+      return
     })
     .catch(error => {console.log(error);
           iziToast.error({
@@ -55,7 +59,5 @@ function validInput(event){
             position: 'topRight'}
             )
           }).finally(() => hideLoader())
-          
-          event.target.reset();
         }
 
